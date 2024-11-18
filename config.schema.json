@@ -1,0 +1,39 @@
+{
+  "pluginAlias": "ToshibaHomeACControlAccessory",
+  "pluginType": "accessory",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name your AC-unit",
+        "type": "string",
+        "default": "Toshiba AC"
+      },
+      "username": {
+        "title": "Username",
+        "type": "string",
+        "required": true
+      },
+      "password": {
+        "title": "Password",
+        "type": "string",
+        "required": true,
+        "format": "password"
+      }
+    }
+  },
+  "layout": [
+    {
+      "key": "name",
+      "title": "Device name"
+    },
+    {
+      "key": "username",
+      "title": "Username"
+    },
+    {
+      "key": "password",
+      "title": "Password"
+    }
+  ]
+}

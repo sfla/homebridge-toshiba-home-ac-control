@@ -1,36 +1,36 @@
 let Service, Characteristic;
-
 module.exports = (api) => {
-    console.log('Registering ToshibaHomeACControlAccessory...');
-    
-    // Assign Service and Characteristic here
     Service = api.hap.Service;
     Characteristic = api.hap.Characteristic;
-    
     api.registerAccessory('ToshibaHomeACControlAccessory', ToshibaHomeACControlAccessory);
 };
-
 class ToshibaHomeACControlAccessory {
     constructor(log, config) {
-        console.log('Initializing ToshibaHomeACControlAccessory...'); // Debug log
-        log('Constructor called for ToshibaHomeACControlAccessory'); // Homebridge log
         this.log = log;
         this.name = config.name || 'Toshiba AC';
         this.config = config;
         
-        log(`Accessory Name: ${this.name}`);
+        this.username = config.username;
+        this.password = config.password;
+        
+        if (!this.username || !this.password) {
+            throw new Error('Username and password must be defined in config.json for ToshibaHomeACControlAccessory.');
+        }
+        
+        this.log(`Username: ${this.username}`);
+        this.log(`Password: [hidden]`);
         
         // Setup the Thermostat service
         this.service = new Service.Thermostat(this.name);
         
         // Bind characteristics to their handlers
         this.service
-            .getCharacteristic(Characteristic.CurrentTemperature)
-            .on('get', this.handleCurrentTemperatureGet.bind(this));
+        .getCharacteristic(Characteristic.CurrentTemperature)
+        .on('get', this.handleCurrentTemperatureGet.bind(this));
         
         this.service
-            .getCharacteristic(Characteristic.TargetTemperature)
-            .on('set', this.handleTargetTemperatureSet.bind(this));
+        .getCharacteristic(Characteristic.TargetTemperature)
+        .on('set', this.handleTargetTemperatureSet.bind(this));
     }
     
     handleCurrentTemperatureGet(callback) {
@@ -49,3 +49,22 @@ class ToshibaHomeACControlAccessory {
         return [this.service];
     }
 }
+
+/* Thermostat
+ constructor(displayName?: string, subtype?: string) {
+    super(displayName, Thermostat.UUID, subtype);
+
+    // Required Characteristics
+    this.addCharacteristic(Characteristic.CurrentHeatingCoolingState);
+    this.addCharacteristic(Characteristic.TargetHeatingCoolingState);
+    this.addCharacteristic(Characteristic.CurrentTemperature);
+    this.addCharacteristic(Characteristic.TargetTemperature);
+    this.addCharacteristic(Characteristic.TemperatureDisplayUnits);
+
+    // Optional Characteristics
+    this.addOptionalCharacteristic(Characteristic.Name);
+    this.addOptionalCharacteristic(Characteristic.CurrentRelativeHumidity);
+    this.addOptionalCharacteristic(Characteristic.TargetRelativeHumidity);
+    this.addOptionalCharacteristic(Characteristic.CoolingThresholdTemperature);
+    this.addOptionalCharacteristic(Characteristic.HeatingThresholdTemperature);
+ */
