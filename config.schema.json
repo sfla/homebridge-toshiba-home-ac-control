@@ -21,10 +21,6 @@
   },
   "layout": [
     {
-      "type": "label",
-      "content": "Provide your Toshiba Home AC Control login credentials."
-    },
-    {
       "key": "username",
       "title": "Username"
     },
