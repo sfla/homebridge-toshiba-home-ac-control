@@ -1,6 +1,6 @@
 {
-  "name": "homebridge-heatpump-plugin",
-  "version": "1.0.0",
+  "name": "homebridge-toshiba-home-ac-control",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

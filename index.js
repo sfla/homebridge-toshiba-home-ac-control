@@ -1,10 +1,10 @@
 const homebridgeAPI = require('homebridge');
 
 module.exports = (api) => {
-  api.registerAccessory('HeatPumpAccessory', HeatPumpAccessory);
+  api.registerAccessory('ToshibaHomeACControlAccessory', ToshibaHomeACControlAccessory);
 };
 
-class HeatPumpAccessory {
+class ToshibaHomeACControlAccessory {
   constructor(log, config) {
     this.log = log;
     this.name = config.name || 'Heat Pump';
