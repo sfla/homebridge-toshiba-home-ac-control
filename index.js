@@ -1,23 +1,15 @@
 const homebridgeAPI = require('homebridge');
 
-module.exports = (api) => {
-  api.registerAccessory('ToshibaHomeACControlAccessory', ToshibaHomeACControlAccessory);
-};
-
 class ToshibaHomeACControlAccessory {
   constructor(log, config) {
     this.log = log;
-    this.name = config.name || 'Heat Pump';
+    this.name = config.name || 'Toshiba AC';
     this.config = config;
-
-    // Initialize your variables and services here
-    this.currentTemperature = 20; // Placeholder value
-    this.targetTemperature = 22; // Placeholder value
 
     // Setup the Thermostat service
     this.service = new homebridgeAPI.hap.Service.Thermostat(this.name);
 
-    // Bind the 'get' and 'set' handlers
+    // Bind characteristics to their handlers
     this.service
       .getCharacteristic(homebridgeAPI.hap.Characteristic.CurrentTemperature)
       .on('get', this.handleCurrentTemperatureGet.bind(this));
@@ -28,13 +20,13 @@ class ToshibaHomeACControlAccessory {
   }
 
   handleCurrentTemperatureGet(callback) {
-    // TODO: Replace with actual API call to get current temperature
-    callback(null, this.currentTemperature);
+    // Placeholder: Replace with actual logic to get temperature
+    callback(null, 22); // Return 22 degrees as an example
   }
 
   handleTargetTemperatureSet(value, callback) {
-    // TODO: Replace with actual API call to set target temperature
-    this.targetTemperature = value;
+    // Placeholder: Replace with actual logic to set temperature
+    this.log(`Set target temperature to: ${value}`);
     callback();
   }
 
@@ -42,3 +34,7 @@ class ToshibaHomeACControlAccessory {
     return [this.service];
   }
 }
+
+module.exports = (api) => {
+  api.registerAccessory('ToshibaHomeACControlAccessory', ToshibaHomeACControlAccessory);
+};
