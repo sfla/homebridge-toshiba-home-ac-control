@@ -1,27 +1,31 @@
-const homebridgeAPI = require('homebridge');
+let Service, Characteristic;
 
 class ToshibaHomeACControlAccessory {
-  constructor(log, config) {
+  constructor(log, config, api) {
     this.log = log;
     this.name = config.name || 'Toshiba AC';
     this.config = config;
 
+    // Get the Service and Characteristic from the Homebridge API
+    Service = api.hap.Service;
+    Characteristic = api.hap.Characteristic;
+
     // Setup the Thermostat service
-    this.service = new homebridgeAPI.hap.Service.Thermostat(this.name);
+    this.service = new Service.Thermostat(this.name);
 
     // Bind characteristics to their handlers
     this.service
-      .getCharacteristic(homebridgeAPI.hap.Characteristic.CurrentTemperature)
+      .getCharacteristic(Characteristic.CurrentTemperature)
       .on('get', this.handleCurrentTemperatureGet.bind(this));
 
     this.service
-      .getCharacteristic(homebridgeAPI.hap.Characteristic.TargetTemperature)
+      .getCharacteristic(Characteristic.TargetTemperature)
       .on('set', this.handleTargetTemperatureSet.bind(this));
   }
 
   handleCurrentTemperatureGet(callback) {
     // Placeholder: Replace with actual logic to get temperature
-    callback(null, 22); // Return 22 degrees as an example
+    callback(null, 22); // Example: return 22 degrees
   }
 
   handleTargetTemperatureSet(value, callback) {

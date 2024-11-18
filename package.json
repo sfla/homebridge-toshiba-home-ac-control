@@ -12,7 +12,5 @@
   "engines": {
     "homebridge": ">=1.0.0"
   },
-  "dependencies": {
-    "homebridge": "^1.8.5"
-  }
+  "dependencies": {}
 }
