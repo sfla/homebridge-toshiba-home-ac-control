@@ -4,28 +4,25 @@
   "schema": {
     "type": "object",
     "properties": {
-      "name": {
-        "title": "Name your AC-unit",
-        "type": "string",
-        "default": "Toshiba AC"
-      },
       "username": {
         "title": "Username",
         "type": "string",
-        "required": true
+        "required": true,
+        "description": "Enter the username used to log into the Toshiba Home AC Control app."
       },
       "password": {
         "title": "Password",
         "type": "string",
         "required": true,
+        "description": "Enter the password for your Toshiba Home AC Control account.",
         "format": "password"
       }
     }
   },
   "layout": [
     {
-      "key": "name",
-      "title": "Device name"
+      "type": "label",
+      "content": "Provide your Toshiba Home AC Control login credentials."
     },
     {
       "key": "username",
