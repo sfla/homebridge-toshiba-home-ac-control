@@ -5,10 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": ["homebridge-plugin"],
+  "author": "Stian Flatby",
+  "license": "MIT",
+  "description": "A plugin to control non-american Toshiba AC units that are accessible through the 'Toshiba Home AC Control' app.",
+  "engines": {
+    "homebridge": ">=1.0.0"
+  },
   "dependencies": {
     "homebridge": "^1.8.5"
   }
